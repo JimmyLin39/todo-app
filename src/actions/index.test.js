@@ -26,7 +26,7 @@ test('Remove Todo Action', () => {
 })
 
 test('Toggle Todo Action', () => {
-  expect(removeTodoAction(0)).toEqual({
+  expect(toggleTodoAction(0)).toEqual({
     type: 'TOGGLE_TODO',
     id: 0
   })
