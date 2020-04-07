@@ -20,10 +20,14 @@ export default function Todos({ store, todos }) {
       })
     )
   }
+
+  const removeTask = id => {
+    store.dispatch(removeTodoAction(id))
+  }
   return (
     <>
       <h1>Todo List</h1>
-      <List items={todos} />
+      <List items={todos} remove={removeTask} />
       <button onClick={addTask}>+</button>
       <input
         type='text'
