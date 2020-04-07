@@ -1,16 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux'
 import './index.css'
 import App from './App'
 import rootReducer from './reducers'
 
-const store = createStore(rootReducer)
+const logger = store => next => action => {
+  console.group(action.type)
+  console.log('The action: ', action)
+  const result = next(action)
+  console.log('The new state:', store.getState())
+  console.groupEnd()
+  return result
+}
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-)
+const store = createStore(rootReducer, applyMiddleware(logger))
+
+ReactDOM.render(<App store={store} />, document.getElementById('root'))
