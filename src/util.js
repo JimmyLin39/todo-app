@@ -14,6 +14,7 @@ export const addCategoryToTodos = (todos, categories) => {
           return { ...todo, category: key }
         }
       }
+      return { ...todo }
     })
   }
   return [...todos]

@@ -3,6 +3,7 @@ import Todos from './components/Todos'
 import Categories from './components/Categories'
 import PropTypes from 'prop-types'
 import { addCategoryToTodos } from './util'
+
 class App extends React.Component {
   componentDidMount() {
     const { store } = this.props
@@ -12,9 +13,10 @@ class App extends React.Component {
     const { store } = this.props
     const { todos, categories } = store.getState()
     const todosWithCategory = addCategoryToTodos(todos, categories)
+    const categoriesArr = Object.keys(categories)
     return (
       <div className='App'>
-        <Categories categories={categories} />
+        <Categories categoriesArr={categoriesArr} />
         <Todos store={store} todos={todosWithCategory} />
       </div>
     )
