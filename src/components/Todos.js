@@ -3,7 +3,12 @@ import PropTypes from 'prop-types'
 import IconButton from '@material-ui/core/Button'
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
 import List from './List'
-import { addTodoAction, removeTodoAction, toggleTodoAction } from '../actions'
+import {
+  addTodoAction,
+  removeTodoAction,
+  toggleTodoAction,
+  addCategoryAction
+} from '../actions'
 import { generateId } from '../util'
 
 export default function Todos({ store, todos }) {
@@ -13,13 +18,23 @@ export default function Todos({ store, todos }) {
   const addTask = e => {
     e.preventDefault()
     const name = taskInput.value
+    const category = categoryInput.value
     taskInput.value = ''
+    categoryInput.value = ''
+
+    const id = generateId()
 
     store.dispatch(
       addTodoAction({
-        id: generateId(),
+        id,
         name,
         complete: false
+      })
+    )
+    store.dispatch(
+      addCategoryAction({
+        name: category,
+        taskId: id
       })
     )
   }
