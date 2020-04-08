@@ -44,6 +44,12 @@ export default function Category({ store, categories }) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
+        <MenuItem
+          selected={selectedCategory === null}
+          onClick={() => handleSelectCateory(null)}
+        >
+          All
+        </MenuItem>
         {categoriesArr.map((category, index) => (
           <MenuItem
             key={index}
