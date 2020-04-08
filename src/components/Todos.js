@@ -96,7 +96,6 @@ export default function Todos({ store, todos }) {
 
   return (
     <div className={classes.root}>
-      <h1>Todo List</h1>
       <TodoItems items={todos} remove={removeTask} toggle={toggleTask} />
 
       <form noValidate autoComplete='off' className={classes.form}>
