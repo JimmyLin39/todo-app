@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import IconButton from '@material-ui/core/Button'
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
-import List from './List'
+import TodoItems from './TodoItems'
 import {
   addTodoAction,
   removeTodoAction,
@@ -50,7 +50,7 @@ export default function Todos({ store, todos }) {
   return (
     <>
       <h1>Todo List</h1>
-      <List items={todos} remove={removeTask} toggle={toggleTask} />
+      <TodoItems items={todos} remove={removeTask} toggle={toggleTask} />
       <IconButton
         color='primary'
         aria-label='add task'

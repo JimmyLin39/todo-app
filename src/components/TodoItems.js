@@ -1,7 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { makeStyles } from '@material-ui/core/styles'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import ListItemText from '@material-ui/core/ListItemText'
 
-export default function List({ items, remove, toggle }) {
+export default function TodoItems({ items, remove, toggle }) {
   return (
     <ul>
       {items.map(item => (
@@ -22,7 +27,7 @@ export default function List({ items, remove, toggle }) {
   )
 }
 
-List.propTypes = {
+TodoItems.propTypes = {
   items: PropTypes.array.isRequired,
   remove: PropTypes.func.isRequired,
   toggle: PropTypes.func.isRequired
