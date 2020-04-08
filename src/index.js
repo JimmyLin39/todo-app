@@ -14,6 +14,9 @@ const logger = store => next => action => {
   return result
 }
 
-const store = createStore(rootReducer, applyMiddleware(logger))
+const store =
+  process.env.NODE_ENV === 'development'
+    ? createStore(rootReducer, applyMiddleware(logger))
+    : createStore(rootReducer)
 
 ReactDOM.render(<App store={store} />, document.getElementById('root'))
