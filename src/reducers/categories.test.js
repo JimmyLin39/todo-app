@@ -2,13 +2,16 @@ import categories from './categories'
 import '@testing-library/react'
 
 test('initial state', () => {
-  expect(categories(undefined, [])).toEqual({})
+  expect(categories(undefined, {})).toEqual({
+    selectedCategory: null,
+    categoryList: {}
+  })
 })
 
 test('add initial category', () => {
   expect(
     categories(
-      { python: [3] },
+      { selectedCategory: null, categoryList: { python: [3] } },
       {
         type: 'ADD_CATEGORY',
         category: {
@@ -18,15 +21,21 @@ test('add initial category', () => {
       }
     )
   ).toEqual({
-    javascript: [1],
-    python: [3]
+    selectedCategory: null,
+    categoryList: {
+      javascript: [1],
+      python: [3]
+    }
   })
 })
 
 test('add task id to existing category', () => {
   expect(
     categories(
-      { javascript: [1], python: [3] },
+      {
+        selectedCategory: null,
+        categoryList: { javascript: [1], python: [3] }
+      },
       {
         type: 'ADD_CATEGORY',
         category: {
@@ -36,7 +45,34 @@ test('add task id to existing category', () => {
       }
     )
   ).toEqual({
-    javascript: [1, 2],
-    python: [3]
+    selectedCategory: null,
+    categoryList: {
+      javascript: [1, 2],
+      python: [3]
+    }
+  })
+})
+
+test('set selected category', () => {
+  expect(
+    categories(
+      {
+        selectedCategory: null,
+        categoryList: {
+          javascript: [1, 2],
+          python: [3]
+        }
+      },
+      {
+        type: 'SET_SELECTED_CATEGORY',
+        selectedCategory: 'javascript'
+      }
+    )
+  ).toEqual({
+    selectedCategory: 'javascript',
+    categoryList: {
+      javascript: [1, 2],
+      python: [3]
+    }
   })
 })

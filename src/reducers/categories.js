@@ -1,4 +1,5 @@
 const ADD_CATEGORY = 'ADD_CATEGORY'
+const SET_SELECTED_CATEGORY = 'SET_SELECTED_CATEGORY'
 
 const categories = (
   state = {
@@ -11,7 +12,7 @@ const categories = (
     case ADD_CATEGORY: {
       const { name, taskId: newTaskId } = action.category
       // new category
-      if (!state[name]) {
+      if (!state.categoryList[name]) {
         return {
           ...state,
           categoryList: { ...state.categoryList, [name]: [newTaskId] }
@@ -21,11 +22,15 @@ const categories = (
         ...state,
         categoryList: {
           ...state.categoryList,
-          [name]: [...state[name], newTaskId]
+          [name]: state.categoryList[name].concat(newTaskId)
         }
       }
     }
-
+    case SET_SELECTED_CATEGORY:
+      return {
+        ...state,
+        selectedCategory: action.selectedCategory
+      }
     default:
       return state
   }
