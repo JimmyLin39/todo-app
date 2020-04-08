@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
-import Checkbox from '@material-ui/core/checkbox'
+import Checkbox from '@material-ui/core/Checkbox'
 import Chip from '@material-ui/core/Chip'
 import DeleteIcon from '@material-ui/icons/Delete'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
