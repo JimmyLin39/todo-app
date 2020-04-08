@@ -1,18 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import FormGroup from '@material-ui/core/FormGroup'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Checkbox from '@material-ui/core/checkbox'
 import Chip from '@material-ui/core/Chip'
+import DeleteIcon from '@material-ui/icons/Delete'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import IconButton from '@material-ui/core/Button'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
 
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper
+  },
+  item: {
+    marginLeft: '20px'
   }
 }))
 
@@ -26,23 +30,29 @@ export default function TodoItems({ items, remove, toggle }) {
           <ListItem key={item.id}>
             {item.category && <Chip label={item.category} color='primary' />}
 
-            <FormGroup row>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={item.complete}
-                    onChange={() => toggle(item.id)}
-                    name={item.name}
-                    color='primary'
-                  />
-                }
-                label={item.name}
-                style={{
-                  textDecoration: item.complete ? 'line-through' : 'none'
-                }}
-              />
-            </FormGroup>
-            <button onClick={() => remove(item.id)}>X</button>
+            <FormControlLabel
+              className={classes.item}
+              control={
+                <Checkbox
+                  checked={item.complete}
+                  onChange={() => toggle(item.id)}
+                  name={item.name}
+                  color='primary'
+                />
+              }
+              label={item.name}
+              style={{
+                textDecoration: item.complete ? 'line-through' : 'none'
+              }}
+            />
+            <IconButton
+              color='primary'
+              aria-label='remove task'
+              component='span'
+              onClick={() => remove(item.id)}
+            >
+              <DeleteIcon />
+            </IconButton>
           </ListItem>
         ))}
       </List>
