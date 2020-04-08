@@ -1,12 +1,15 @@
 import React from 'react'
-import Button from '@material-ui/core/Button'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import PropTypes from 'prop-types'
+import { setSelectedCategoryAction } from '../actions'
 
-export default function Category({ categories }) {
+export default function Category({ store, categories }) {
   const categoriesArr = Object.keys(categories.categoryList)
-
+  const { selectedCategory } = categories
   const [anchorEl, setAnchorEl] = React.useState(null)
 
   const handleClick = event => {
@@ -16,15 +19,24 @@ export default function Category({ categories }) {
   const handleClose = () => {
     setAnchorEl(null)
   }
+
+  const handleSelectCateory = category => {
+    store.dispatch(setSelectedCategoryAction(category))
+    setAnchorEl(null)
+  }
   return (
     <div>
-      <Button
-        aria-controls='categories-menu'
-        aria-haspopup='true'
-        onClick={handleClick}
-      >
-        Category
-      </Button>
+      <List component='nav' aria-label='Categories'>
+        <ListItem
+          button
+          aria-haspopup='true'
+          aria-controls='category-menu'
+          aria-label='category'
+          onClick={handleClick}
+        >
+          <ListItemText primary='Category' secondary={selectedCategory} />
+        </ListItem>
+      </List>
       <Menu
         id='categories-menu'
         anchorEl={anchorEl}
@@ -33,7 +45,11 @@ export default function Category({ categories }) {
         onClose={handleClose}
       >
         {categoriesArr.map((category, index) => (
-          <MenuItem onClick={handleClose} key={index}>
+          <MenuItem
+            key={index}
+            onClick={() => handleSelectCateory(category)}
+            selected={category === selectedCategory}
+          >
             {category}
           </MenuItem>
         ))}
@@ -42,6 +58,7 @@ export default function Category({ categories }) {
   )
 }
 
-Category.propType = {
-  categories: PropTypes.array
+Category.propTypes = {
+  store: PropTypes.object.isRequired,
+  categories: PropTypes.object.isRequired
 }

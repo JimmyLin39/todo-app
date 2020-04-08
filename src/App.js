@@ -15,7 +15,7 @@ class App extends React.Component {
     const todosWithCategory = addCategoryToTodos(todos, categories.categoryList)
     return (
       <div className='App'>
-        <Category categories={categories} />
+        <Category store={store} categories={categories} />
         <Todos store={store} todos={todosWithCategory} />
       </div>
     )
