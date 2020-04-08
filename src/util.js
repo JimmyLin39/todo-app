@@ -6,16 +6,29 @@ export const generateId = () => {
   )
 }
 
-export const addCategoryToTodos = (todos, categories) => {
-  if (categories !== {} && todos.length) {
-    return todos.map(todo => {
-      for (const key in categories) {
-        if (categories[key].includes(todo.id)) {
-          return { ...todo, category: key }
+export const filterTodos = (todos, categories) => {
+  if (categories.categoryList !== {} && todos.length) {
+    const { selectedCategory, categoryList } = categories
+    // has selected category
+    if (selectedCategory) {
+      const filteredTodos = todos.filter(todo =>
+        categoryList[selectedCategory].includes(todo.id)
+      )
+      const todosWithCategory = filteredTodos.map(todos => ({
+        ...todos,
+        category: selectedCategory
+      }))
+      return todosWithCategory
+    } else {
+      return todos.map(todo => {
+        for (const key in categoryList) {
+          if (categoryList[key].includes(todo.id)) {
+            return { ...todo, category: key }
+          }
         }
-      }
-      return { ...todo }
-    })
+        return { ...todo }
+      })
+    }
   }
   return [...todos]
 }

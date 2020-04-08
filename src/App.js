@@ -2,7 +2,7 @@ import React from 'react'
 import Todos from './components/Todos'
 import Category from './components/Category'
 import PropTypes from 'prop-types'
-import { addCategoryToTodos } from './util'
+import { filterTodos } from './util'
 
 class App extends React.Component {
   componentDidMount() {
@@ -12,11 +12,11 @@ class App extends React.Component {
   render() {
     const { store } = this.props
     const { todos, categories } = store.getState()
-    const todosWithCategory = addCategoryToTodos(todos, categories.categoryList)
+    const filteredTodos = filterTodos(todos, categories)
     return (
       <div className='App'>
         <Category store={store} categories={categories} />
-        <Todos store={store} todos={todosWithCategory} />
+        <Todos store={store} todos={filteredTodos} />
       </div>
     )
   }
