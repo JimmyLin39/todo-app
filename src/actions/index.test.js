@@ -1,4 +1,9 @@
-import { addTodoAction, removeTodoAction, toggleTodoAction } from './index'
+import {
+  addTodoAction,
+  removeTodoAction,
+  toggleTodoAction,
+  addCategoryAction
+} from './index'
 import '@testing-library/react'
 
 test('Add Todo Action', () => {
@@ -29,5 +34,20 @@ test('Toggle Todo Action', () => {
   expect(toggleTodoAction(0)).toEqual({
     type: 'TOGGLE_TODO',
     id: 0
+  })
+})
+
+test('Add Category Action', () => {
+  expect(
+    addCategoryAction({
+      name: 'javascript',
+      taskId: 1
+    })
+  ).toEqual({
+    type: 'ADD_CATEGORY',
+    category: {
+      name: 'javascript',
+      taskId: 1
+    }
   })
 })
