@@ -12,8 +12,8 @@ class App extends React.Component {
   render() {
     const { store } = this.props
     const { todos, categories } = store.getState()
-    const todosWithCategory = addCategoryToTodos(todos, categories)
-    const categoriesArr = Object.keys(categories)
+    const todosWithCategory = addCategoryToTodos(todos, categories.categoryList)
+    const categoriesArr = Object.keys(categories.categoryList)
     return (
       <div className='App'>
         <Categories categoriesArr={categoriesArr} />
