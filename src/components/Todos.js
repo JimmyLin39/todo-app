@@ -11,7 +11,8 @@ import {
   addTodoAction,
   removeTodoAction,
   toggleTodoAction,
-  addCategoryAction
+  addCategoryAction,
+  removeCategoryAction
 } from '../actions'
 import { generateId } from '../util'
 
@@ -84,8 +85,9 @@ export default function Todos({ store, todos }) {
     }
   }
 
-  const removeTask = id => {
+  const removeTask = (category, id) => {
     store.dispatch(removeTodoAction(id))
+    store.dispatch(removeCategoryAction(category, id))
   }
 
   const toggleTask = id => {
@@ -96,7 +98,11 @@ export default function Todos({ store, todos }) {
 
   return (
     <div className={classes.root}>
-      <TodoItems items={todos} remove={removeTask} toggle={toggleTask} />
+      {todos ? (
+        <TodoItems items={todos} remove={removeTask} toggle={toggleTask} />
+      ) : (
+        ''
+      )}
 
       <form noValidate autoComplete='off' className={classes.form}>
         <IconButton

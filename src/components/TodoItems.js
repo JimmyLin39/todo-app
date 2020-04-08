@@ -48,7 +48,7 @@ export default function TodoItems({ items, remove, toggle }) {
               color='primary'
               aria-label='remove task'
               component='span'
-              onClick={() => remove(item.id)}
+              onClick={() => remove(item.category, item.id)}
             >
               <DeleteIcon />
             </IconButton>
