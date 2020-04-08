@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import IconButton from '@material-ui/core/Button'
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
 import List from './List'
 import { addTodoAction, removeTodoAction, toggleTodoAction } from '../actions'
 import { generateId } from '../util'
@@ -34,7 +36,14 @@ export default function Todos({ store, todos }) {
     <>
       <h1>Todo List</h1>
       <List items={todos} remove={removeTask} toggle={toggleTask} />
-      <button onClick={addTask}>+</button>
+      <IconButton
+        color='primary'
+        aria-label='add task'
+        component='span'
+        onClick={addTask}
+      >
+        <AddCircleOutlineIcon />
+      </IconButton>
       <input
         type='text'
         placeholder='Add Task'
