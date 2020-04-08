@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.paper
   },
   item: {
-    marginLeft: '20px'
+    marginLeft: '0px'
   }
 }))
 
@@ -28,8 +28,6 @@ export default function TodoItems({ items, remove, toggle }) {
       <List component='nav' aria-label='Todo items'>
         {items.map(item => (
           <ListItem key={item.id}>
-            {item.category && <Chip label={item.category} color='primary' />}
-
             <FormControlLabel
               className={classes.item}
               control={
@@ -45,6 +43,7 @@ export default function TodoItems({ items, remove, toggle }) {
                 textDecoration: item.complete ? 'line-through' : 'none'
               }}
             />
+            {item.category && <Chip label={item.category} color='primary' />}
             <IconButton
               color='primary'
               aria-label='remove task'
