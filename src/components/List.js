@@ -13,7 +13,8 @@ export default function List({ items, remove, toggle }) {
             }}
           >
             {item.name}
-          </span>
+          </span>{' '}
+          | {item.category && <span>{item.category}</span>}
           <button onClick={() => remove(item.id)}>X</button>
         </li>
       ))}
