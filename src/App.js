@@ -1,6 +1,7 @@
 import React from 'react'
 import Todos from './components/Todos'
 import Categories from './components/Categories'
+import PropTypes from 'prop-types'
 
 class App extends React.Component {
   componentDidMount() {
@@ -20,3 +21,7 @@ class App extends React.Component {
 }
 
 export default App
+
+App.propTypes = {
+  store: PropTypes.object.isRequired
+}
