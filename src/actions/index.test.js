@@ -2,7 +2,8 @@ import {
   addTodoAction,
   removeTodoAction,
   toggleTodoAction,
-  addCategoryAction
+  addCategoryAction,
+  addSelectedCategory
 } from './index'
 import '@testing-library/react'
 
@@ -49,5 +50,12 @@ test('Add Category Action', () => {
       name: 'javascript',
       taskId: 1
     }
+  })
+})
+
+test('Set Selected Category Action', () => {
+  expect(addSelectedCategory('javascript')).toEqual({
+    type: 'SET_SELECTED_CATEGORY',
+    selectedCategory: 'javascript'
   })
 })
