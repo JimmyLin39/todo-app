@@ -24,7 +24,7 @@ export const addCategoryAction = category => ({
   category
 })
 
-export const addSelectedCategory = selectedCategory => ({
+export const setSelectedCategoryAction = selectedCategory => ({
   type: SET_SELECTED_CATEGORY,
   selectedCategory
 })
