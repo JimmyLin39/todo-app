@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import List from './List'
 import { addTodoAction, removeTodoAction, toggleTodoAction } from '../actions'
 import { generateId } from '../util'
@@ -24,10 +25,15 @@ export default function Todos({ store, todos }) {
   const removeTask = id => {
     store.dispatch(removeTodoAction(id))
   }
+
+  const toggleTask = id => {
+    store.dispatch(toggleTodoAction(id))
+  }
+
   return (
     <>
       <h1>Todo List</h1>
-      <List items={todos} remove={removeTask} />
+      <List items={todos} remove={removeTask} toggle={toggleTask} />
       <button onClick={addTask}>+</button>
       <input
         type='text'
@@ -41,4 +47,9 @@ export default function Todos({ store, todos }) {
       />
     </>
   )
+}
+
+Todos.propTypes = {
+  store: PropTypes.object.isRequired,
+  todos: PropTypes.array.isRequired
 }
