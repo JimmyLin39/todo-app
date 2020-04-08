@@ -2,6 +2,7 @@ const ADD_TODO = 'ADD_TODO'
 const REMOVE_TODO = 'REMOVE_TODO'
 const TOGGLE_TODO = 'TOGGLE_TODO'
 const ADD_CATEGORY = 'ADD_CATEGORY'
+const REMOVE_CATEGORY = 'REMOVE_CATEGORY'
 const SET_SELECTED_CATEGORY = 'SET_SELECTED_CATEGORY'
 
 export const addTodoAction = todo => ({
@@ -22,6 +23,12 @@ export const toggleTodoAction = id => ({
 export const addCategoryAction = category => ({
   type: ADD_CATEGORY,
   category
+})
+
+export const removeCategoryAction = (category, id) => ({
+  type: REMOVE_CATEGORY,
+  category,
+  id
 })
 
 export const setSelectedCategoryAction = selectedCategory => ({

@@ -53,6 +53,31 @@ test('add task id to existing category', () => {
   })
 })
 
+test('remove task from category', () => {
+  expect(
+    categories(
+      {
+        selectedCategory: null,
+        categoryList: {
+          javascript: [1, 2],
+          python: [3]
+        }
+      },
+      {
+        type: 'REMOVE_CATEGORY',
+        category: 'javascript',
+        id: 1
+      }
+    )
+  ).toEqual({
+    selectedCategory: null,
+    categoryList: {
+      javascript: [2],
+      python: [3]
+    }
+  })
+})
+
 test('set selected category', () => {
   expect(
     categories(

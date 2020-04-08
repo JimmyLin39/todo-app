@@ -1,4 +1,5 @@
 const ADD_CATEGORY = 'ADD_CATEGORY'
+const REMOVE_CATEGORY = 'REMOVE_CATEGORY'
 const SET_SELECTED_CATEGORY = 'SET_SELECTED_CATEGORY'
 
 const categories = (
@@ -26,6 +27,20 @@ const categories = (
         }
       }
     }
+    case REMOVE_CATEGORY: {
+      const { categoryList } = state
+      const { category } = action
+      return {
+        ...state,
+        categoryList: {
+          ...categoryList,
+          [category]: categoryList[category].filter(
+            taskId => taskId !== action.id
+          )
+        }
+      }
+    }
+
     case SET_SELECTED_CATEGORY:
       return {
         ...state,
