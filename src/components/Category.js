@@ -4,7 +4,9 @@ import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import PropTypes from 'prop-types'
 
-export default function Categories({ categoriesArr }) {
+export default function Category({ categories }) {
+  const categoriesArr = Object.keys(categories.categoryList)
+
   const [anchorEl, setAnchorEl] = React.useState(null)
 
   const handleClick = event => {
@@ -40,6 +42,6 @@ export default function Categories({ categoriesArr }) {
   )
 }
 
-Categories.propType = {
-  categoriesArr: PropTypes.array
+Category.propType = {
+  categories: PropTypes.array
 }
